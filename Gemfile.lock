@@ -345,6 +345,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  actioncable (~> 7.2.3)
   active_storage_validations
   bootsnap
   brakeman

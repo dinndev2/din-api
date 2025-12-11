@@ -7,11 +7,7 @@ require "active_job/railtie"
 require "active_record/railtie"
 require "active_storage/engine"
 require "action_controller/railtie"
-begin
-  require "action_cable/railtie"
-rescue LoadError
-  # ActionCable not available in API-only mode unless explicitly added
-end
+require "action_cable/engine"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "rails/test_unit/railtie"

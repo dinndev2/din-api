@@ -4,10 +4,10 @@ namespace :resume do
     file_path = args[:file_path] || ENV["RESUME_PATH"] || Rails.root.join("storage", "resume.pdf")
     
     unless File.exist?(file_path)
-      puts "Error: Resume file not found at #{file_path}"
+      puts "Warning: Resume file not found at #{file_path}, skipping upload"
       puts "Usage: rails resume:load[path/to/resume.pdf]"
       puts "   or: RESUME_PATH=path/to/resume.pdf rails resume:load"
-      exit 1
+      return # Exit gracefully without error
     end
 
     puts "Loading resume from #{file_path}..."

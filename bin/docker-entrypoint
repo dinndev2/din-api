@@ -8,6 +8,14 @@ fi
 # If running the rails server then create or migrate existing database
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
   ./bin/rails db:prepare
+  
+  # Upload resume if file exists (optional - won't fail if missing)
+  if [ -f "storage/resume.pdf" ]; then
+    echo "Resume file found, uploading..."
+    ./bin/rails resume:load || echo "Warning: Resume upload failed, continuing..."
+  else
+    echo "No resume file found at storage/resume.pdf, skipping upload"
+  fi
 fi
 
 exec "${@}"

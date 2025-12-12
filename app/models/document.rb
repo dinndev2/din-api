@@ -24,7 +24,17 @@ class Document < ApplicationRecord
 
   def text_content
     return "" unless file.attached?
-    reader = PDF::Reader.new(StringIO.new(file.download))
-    reader.pages.map(&:text).join("\n")
+    
+    begin
+      file_data = file.download
+      reader = PDF::Reader.new(StringIO.new(file_data))
+      reader.pages.map(&:text).join("\n")
+    rescue ActiveStorage::FileNotFoundError, Errno::ENOENT => e
+      Rails.logger.error "File not found for document #{id}: #{e.message}"
+      ""
+    rescue => e
+      Rails.logger.error "Error reading PDF for document #{id}: #{e.message}"
+      ""
+    end
   end
 end

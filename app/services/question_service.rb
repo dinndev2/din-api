@@ -29,7 +29,9 @@ class QuestionService
     documents = ranked_documents(generate_question_embedding(question))
     return nil unless documents.any?
     
-    context = documents.map { |doc| doc.text_content }.join("\n")
+    context = documents.map { |doc| doc.text_content }.reject(&:empty?).join("\n")
+    return nil if context.empty?
+    
     prompt = <<~PROMPT
       You are a helpful assistant. Answer the question using only the provided context. Do not invent information.
 

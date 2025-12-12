@@ -14,6 +14,16 @@ module Api
                   question: "string (required)"
                 }
               }
+            },
+            documents: {
+              upload_resume: {
+                method: "POST",
+                path: "/api/v1/documents/upload_resume",
+                description: "Upload resume PDF file",
+                parameters: {
+                  file: "multipart/form-data file (required)"
+                }
+              }
             }
           }
         }, status: :ok

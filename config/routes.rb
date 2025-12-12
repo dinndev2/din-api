@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get "/", to: "info#index"
       post "questions/ask", to: "questions#ask"
+      post "documents/upload_resume", to: "documents#upload_resume"
     end
   end
 end

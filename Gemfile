@@ -5,7 +5,7 @@ gem "rails", "~> 7.2.3"
 # ActionCable for WebSocket support
 gem "actioncable", "~> 7.2.3"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.6"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
